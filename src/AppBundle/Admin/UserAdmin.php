@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
@@ -6,6 +7,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+
 
 class UserAdmin extends Admin
 {
@@ -19,7 +21,6 @@ class UserAdmin extends Admin
         $formMapper
             ->add('name')
             ->add('birthday')
-            ->add('sex')
         ;
     }
     /**
@@ -31,7 +32,6 @@ class UserAdmin extends Admin
     {
         $datagridMapper
             ->add('name')
-            ->add('sex')
         ;
     }
     /**
@@ -45,7 +45,6 @@ class UserAdmin extends Admin
             ->addIdentifier('id')
             ->add('name')
             ->add('birthday')
-            ->add('sex')
         ;
     }
     /**
@@ -59,7 +58,6 @@ class UserAdmin extends Admin
             ->add('id')
             ->add('name')
             ->add('birthday')
-            ->add('sex')
         ;
     }
 }

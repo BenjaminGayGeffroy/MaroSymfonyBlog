@@ -3,11 +3,10 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * User
  *
- * @ORM\Entity(repositoryClass="AppBundle\Entity\TrainerRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\UserRepository")
  * @ORM\Table(name="user")
  */
 class User
@@ -20,42 +19,28 @@ class User
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=50)
      */
     private $name;
-
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="birthday", type="date")
      */
     private $birthday;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="sex", type="boolean")
-     */
-    private $sex;
-
-    const SEX_FEMALE = false;
-    const SEX_MALE   = true;
-
-
     /**
      * Get id
      *
      * @return integer
      */
+
     public function getId()
     {
         return $this->id;
     }
-
     /**
      * Set name
      *
@@ -66,7 +51,6 @@ class User
     public function setName($name)
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -90,7 +74,6 @@ class User
     public function setBirthday($birthday)
     {
         $this->birthday = $birthday;
-
         return $this;
     }
 
@@ -102,30 +85,6 @@ class User
     public function getBirthday()
     {
         return $this->birthday;
-    }
-
-    /**
-     * Set sex.
-     *
-     * @param boolean $sex
-     *
-     * @return User
-     */
-    public function setSex($sex)
-    {
-        $this->sex = $sex;
-
-        return $this;
-    }
-
-    /**
-     * Get sex.
-     *
-     * @return boolean
-     */
-    public function getSex()
-    {
-        return $this->sex;
     }
 
     /**

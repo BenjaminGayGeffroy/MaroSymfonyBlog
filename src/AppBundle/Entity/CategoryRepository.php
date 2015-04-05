@@ -14,15 +14,14 @@ use Doctrine\ORM\Query\Expr as Expr;
  */
 class CategoryRepository extends EntityRepository
 {
+
     public function findCatchAll($id = null)
     {
         $qb = $this->createQueryBuilder('c');
         $qb
             ->select('c')
-        ;
-
-        // Un pokemon?
-        if (null !== $id){
+            ->orderBy('c.id', 'DESC');
+        if (null !== $id) {
             $qb
                 ->where('c.id = :id')
                 ->setParameters([
@@ -30,13 +29,8 @@ class CategoryRepository extends EntityRepository
                 ])
             ;
         }
-
         return null === $id
-            // TOUS LES ARTICLES
             ? $qb->getQuery()->getArrayResult()
-
-            // UN ARTICLE
-            : $qb->getQuery()->getSingleResult(AbstractQuery::HYDRATE_ARRAY)
-            ;
+            : $qb->getQuery()->getSingleResult(AbstractQuery::HYDRATE_ARRAY);
     }
 }

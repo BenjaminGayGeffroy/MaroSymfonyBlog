@@ -1,5 +1,4 @@
 <?php
-
 namespace AppBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -9,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\User;
 use AppBundle\Form\UserType;
+
 
 /**
  * User controller.
@@ -27,9 +27,7 @@ class userController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $users = $em->getRepository('AppBundle:User')->findAll();
-
         return $this->render('AppBundle:User:index.html.twig', [
             'users' => $users,
         ]);
@@ -44,30 +42,23 @@ class userController extends Controller
     public function createAction(Request $request)
     {
         $user = new User();
-
         $form = $this->createForm(new UserType(), $user, array(
             'action' => $this->generateUrl('user_create'),
             'method' => 'POST',
         ));
-
         $form->add('submit', 'submit', array('label' => 'Create'));
-
         $form->handleRequest($request);
-
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-
             return $this->render($this->generateUrl('user_show', array('id' => $user->getId())));
         }
-
         return $this->render('AppBundle:User:new.html.twig', [
             'user' => $user,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ]);
     }
-
     /**
      * Finds and displays a User entity.
      *
@@ -79,21 +70,16 @@ class userController extends Controller
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-
         $user = $em->getRepository('AppBundle:User')->find($id);
-
         if (!$user) {
             throw $this->createNotFoundException('Unable to find User entity.');
         }
-
         $deleteForm = $this->createDeleteForm($id);
-
         return $this->render('AppBundle:User:show.html.twig', [
             'user'      => $user,
             'delete_form' => $deleteForm->createView(),
         ]);
     }
-
     /**
      * Edits an existing User entity.
      *
@@ -104,29 +90,21 @@ class userController extends Controller
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-
         $user = $em->getRepository('AppBundle:User')->find($id);
-
         if (!$user) {
             throw $this->createNotFoundException('Unable to find User entity.');
         }
-
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createForm(new UserType(), $user, array(
             'action' =>$this->generateUrl('user_update', array('id' => $user->getId())),
             'method' => 'PUT',
         ));
-
         $editForm->add('submit', 'submit', array('label' => 'Update'));
-
         $editForm->handleRequest($request);
-
         if ($editForm->isValid()) {
             $em->flush();
-
             return $this->redirect($this->generateUrl('user_show', array('id' => $id)));
         }
-
         return $this->render('AppBundle:User:edit.html.twig', [
             'user'      => $user,
             'edit_form'   => $editForm->createView(),
@@ -144,22 +122,17 @@ class userController extends Controller
     {
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
-
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('AppBundle:User')->find($id);
-
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find User entity.');
             }
-
             $em->remove($entity);
             $em->flush();
         }
-
         return $this->redirect($this->generateUrl('user'));
     }
-
     /**
      * Creates a form to delete a User entity by id.
      *

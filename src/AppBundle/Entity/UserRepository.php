@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\Query\Expr as Expr;
 
+
 /**
  * UserRepository
  *
@@ -20,7 +21,7 @@ class UserRepository extends EntityRepository
 
         if (null !== $id){
             $qb
-                ->where('u.id = :id')
+                ->where('a.id = :id')
                 ->setParameters([
                     ':id' => $id,
                 ])

@@ -7,6 +7,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
+
 class TagAdmin extends Admin
 {
     /**
@@ -20,6 +21,7 @@ class TagAdmin extends Admin
             ->add('name')
         ;
     }
+
     /**
      * Fields to be shown on filter forms
      *
@@ -32,6 +34,7 @@ class TagAdmin extends Admin
             ->add('name')
         ;
     }
+
     /**
      * Fields to be shown on lists
      *
@@ -44,6 +47,7 @@ class TagAdmin extends Admin
             ->add('name')
         ;
     }
+
     /**
      * Fields to be shown on show action
      *

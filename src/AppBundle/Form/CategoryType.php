@@ -1,10 +1,15 @@
 <?php
+
 namespace AppBundle\Form;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+
+
 class CategoryType extends AbstractType
 {
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -15,6 +20,7 @@ class CategoryType extends AbstractType
             ->add('name')
         ;
     }
+
     /**
      * @param OptionsResolverInterface $resolver
      */
@@ -24,6 +30,7 @@ class CategoryType extends AbstractType
             'data_class' => 'AppBundle\Entity\Category'
         ));
     }
+
     /**
      * @return string
      */

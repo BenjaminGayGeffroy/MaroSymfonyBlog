@@ -14,19 +14,17 @@ use Doctrine\ORM\Query\Expr as Expr;
  */
 class ArticleRepository extends EntityRepository
 {
-
     public function findCatchAll($id = null)
     {
         $qb = $this->createQueryBuilder('a');
         $qb
             ->select('a, u, c, t')
-            ->leftJoin('a.user', 't', Expr\Join::WITH)
-            ->leftJoin('a.categories', 'tr', Expr\Join::WITH)
+            ->leftJoin('a.user', 'u', Expr\Join::WITH)
+            ->leftJoin('a.categories', 'c', Expr\Join::WITH)
+            ->leftJoin('a.tags', 't', Expr\Join::WITH)
             ->orderBy('a.id', 'DESC');
         ;
-
-        // Un pokemon?
-        if (null !== $id){
+        if (null !== $id) {
             $qb
                 ->where('a.id = :id')
                 ->setParameters([
@@ -34,13 +32,8 @@ class ArticleRepository extends EntityRepository
                 ])
             ;
         }
-
         return null === $id
-            // TOUS LES ARTICLES
             ? $qb->getQuery()->getArrayResult()
-
-            // UN ARTICLE
-            : $qb->getQuery()->getSingleResult(AbstractQuery::HYDRATE_ARRAY)
-            ;
+            : $qb->getQuery()->getSingleResult(AbstractQuery::HYDRATE_ARRAY);
     }
 }

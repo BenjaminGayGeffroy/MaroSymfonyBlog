@@ -16,14 +16,10 @@ class DefaultController extends Controller
     public function testAction()
     {
         /*$array = ['ljnergzr', 9, 765=> 'zegzegr'];
-
         return new JsonResponse($array);*/
-
         return $this->render('default/index.html.twig');
-
         return new Response($this->renderView('default/index.html.twig'));
     }
-
     /**
      * @Route(
      *      "/article-{year}/{id}/comments/{page}",
@@ -44,7 +40,6 @@ class DefaultController extends Controller
     {
         return new Response('Catch All: '.$year.' - '.$id.' - '.$page);
     }
-
     /**
      * @Route("/app/example", name="homepage")
      */
@@ -52,7 +47,6 @@ class DefaultController extends Controller
     {
         return $this->render('default/index.html.twig');
     }
-
     /**
      * @Route("/hello/{name}", name="hello_world")
      *
@@ -63,12 +57,10 @@ class DefaultController extends Controller
     public function helloWorldAction(Request $request, $name)
     {
         //return new Response("Hello World!");
-
         /*var_dump(
             $request->getLocale(),
             $request->getPreferredLanguage()
         );die;*/
-
         return $this->render('AppBundle::hello-world.html.twig', [
             'name'   => $name,
             'date'   => new \DateTime(),

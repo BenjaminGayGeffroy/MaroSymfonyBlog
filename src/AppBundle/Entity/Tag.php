@@ -1,22 +1,21 @@
 <?php
 
 namespace AppBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Tag
  *
- * @ORM\Table(name="tag")
  * @ORM\Entity(repositoryClass="AppBundle\Entity\TagRepository")
+ * @ORM\Table(name="tag")
  */
 class Tag
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     * @ORM\Column(name="id", type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
@@ -69,4 +68,5 @@ class Tag
     {
         return $this->name;
     }
+
 }

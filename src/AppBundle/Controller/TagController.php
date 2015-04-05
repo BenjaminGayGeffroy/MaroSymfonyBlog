@@ -1,5 +1,4 @@
 <?php
-
 namespace AppBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -27,14 +26,11 @@ class TagController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $tags = $em->getRepository('AppBundle:Tag')->findAll();
-
         return $this->render('AppBundle:Tag:index.html.twig', [
             'tags' => $tags,
         ]);
     }
-
     /**
      * Creates a new Tag entity.
      *
@@ -48,30 +44,23 @@ class TagController extends Controller
     public function createAction(Request $request)
     {
         $tag = new Tag();
-
         $form = $this->createForm(new TagType(), $tag, [
             'action' => $this->generateUrl('tag_create'),
             'method' => 'POST',
         ]);
-
         $form->add('submit', 'submit', ['label' => 'Create']);
-
         $form->handleRequest($request);
-
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($tag);
             $em->flush();
-
             return $this->redirect($this->generateUrl('tag_show', ['id' => $tag->getId()]));
         }
-
         return $this->render('AppBundle:Tag:new.html.twig', [
             'tag' => $tag,
             'form' => $form->createView(),
         ]);
     }
-
     /**
      * Finds and displays a Tag entity.
      *
@@ -82,21 +71,16 @@ class TagController extends Controller
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-
         $tag = $em->getRepository('AppBundle:Tag')->find($id);
-
         if (!$tag) {
             throw $this->createNotFoundException('Unable to find Tag entity.');
         }
-
         $deleteForm = $this->createDeleteForm($id);
-
         return $this->render('AppBundle:Tag:show.html.twig', [
             'tag'        => $tag,
             'delete_form' => $deleteForm->createView(),
         ]);
     }
-
     /**
      * Edits an existing Tag entity.
      *
@@ -107,30 +91,21 @@ class TagController extends Controller
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-
         $tag = $em->getRepository('AppBundle:Tag')->find($id);
-
         if (!$tag) {
             throw $this->createNotFoundException('Unable to find Tag entity.');
         }
-
         $deleteForm = $this->createDeleteForm($id);
-
         $editForm = $this->createForm(new TagType(), $tag, [
             'action' => $this->generateUrl('tag_update', ['id' => $tag->getId()]),
             'method' => 'PUT',
         ]);
-
         $editForm->add('submit', 'submit', ['label' => 'Update']);
-
         $editForm->handleRequest($request);
-
         if ($editForm->isValid()) {
             $em->flush();
-
             return $this->redirect($this->generateUrl('tag_show', ['id' => $id]));
         }
-
         return $this->render('AppBundle:Tag:edit.html.twig', [
             'tag'        => $tag,
             'edit_form'   => $editForm->createView(),
@@ -148,22 +123,17 @@ class TagController extends Controller
     {
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
-
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('AppBundle:Tag')->find($id);
-
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Tag entity.');
             }
-
             $em->remove($entity);
             $em->flush();
         }
-
         return $this->redirect($this->generateUrl('tag'));
     }
-
     /**
      * Creates a form to delete a Tag entity by id.
      *

@@ -1,15 +1,15 @@
 <?php
 
 namespace AppBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Category
  *
- * @ORM\Table(name="category")
+ * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Entity\CategoryRepository")
  */
+
 class Category
 {
     /**
@@ -21,6 +21,7 @@ class Category
      */
     private $id;
 
+
     /**
      * @var string
      *
@@ -28,11 +29,10 @@ class Category
      */
     private $name;
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -48,14 +48,13 @@ class Category
     public function setName($name)
     {
         $this->name = $name;
-
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {

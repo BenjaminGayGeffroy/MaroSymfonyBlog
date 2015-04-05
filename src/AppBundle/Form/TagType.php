@@ -1,8 +1,12 @@
 <?php
+
 namespace AppBundle\Form;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+
+
 class TagType extends AbstractType
 {
     /**
@@ -15,6 +19,7 @@ class TagType extends AbstractType
             ->add('name')
         ;
     }
+
     /**
      * @param OptionsResolverInterface $resolver
      */
@@ -24,6 +29,7 @@ class TagType extends AbstractType
             'data_class' => 'AppBundle\Entity\Tag'
         ));
     }
+
     /**
      * @return string
      */

@@ -18,13 +18,9 @@ class TagRepository extends EntityRepository
     public function findCatchAll($id = null)
     {
         $qb = $this->createQueryBuilder('t');
-
         $qb
-            ->select('t, a')
-            ->leftJoin('t.articles', 'a', Expr\Join::WITH)
+            ->select('t')
             ->orderBy('t.id', 'DESC');
-        ;
-
         if (null !== $id) {
             $qb
                 ->where('t.id = :id')
@@ -33,12 +29,9 @@ class TagRepository extends EntityRepository
                 ])
             ;
         }
-
-
         return null === $id
             ? $qb->getQuery()->getArrayResult()
             : $qb->getQuery()->getSingleResult(AbstractQuery::HYDRATE_ARRAY);
-
     }
 
 }
